@@ -1,6 +1,6 @@
-import type { CommandInteraction } from 'discord.js'
-import { EmbedBuilder } from 'discord.js'
-import { Discord, Slash } from 'discordx'
+import type { CommandInteraction } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
+import { Discord, Slash } from 'discordx';
 
 @Discord()
 export class PingCommand {
@@ -11,7 +11,11 @@ export class PingCommand {
 	})
 	async ping(interaction: CommandInteraction) {
 		await interaction.reply({
-			embeds: [new EmbedBuilder().setTitle('Pong!').setDescription(`Ping: ${interaction.client.ws.ping}ms`)],
-		})
+			embeds: [
+				new EmbedBuilder()
+					.setTitle('Pong!')
+					.setDescription(`Ping: ${interaction.client.ws.ping}ms`),
+			],
+		});
 	}
 }
