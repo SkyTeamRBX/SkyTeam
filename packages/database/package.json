@@ -1,0 +1,28 @@
+{
+	"name": "@skyteam/database",
+	"version": "0.0.1",
+	"private": true,
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"build": "tsup src/index.ts",
+		"dev": "tsup src/index.ts --watch",
+		"lint": "eslint src/",
+		"clean": "rm -rf dist",
+		"db:generate": "drizzle-kit generate:pg",
+		"db:push": "drizzle-kit push:pg",
+		"db:studio": "drizzle-kit studio"
+	},
+	"dependencies": {
+		"drizzle-orm": "^0.29.4",
+		"postgres": "^3.4.3"
+	},
+	"devDependencies": {
+		"@types/node": "^20.11.24",
+		"drizzle-kit": "^0.20.14",
+		"eslint": "^8.57.0",
+		"tsup": "^8.0.2",
+		"typescript": "^5.3.3"
+	}
+}

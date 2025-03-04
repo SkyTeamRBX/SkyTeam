@@ -1,0 +1,22 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"globalDependencies": [".env"],
+	"globalEnv": [
+		"DATABASE_URL",
+		"DISCORD_TOKEN",
+		"DISCORD_CLIENT_ID",
+		"NEXT_PUBLIC_API_URL",
+		"ADMIN_JWT_SECRET"
+	],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": [".next/**", "!.next/cache/**", "dist/**"]
+		},
+		"lint": {},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		}
+	}
+}
