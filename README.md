@@ -1,4 +1,7 @@
-# SkyTeam Monorepo
+# SkyTeam ROBLOX
+<p align="left">
+<sub><b>SkyTeamRBX nor this project is in no way affiliated with the SkyTeam Airline Alliance, its member airlines, subsidaries or airlines listed in this project. The usage of logos is not approved by the respective companies.</b></sub>
+</p>
 
 This is a monorepo containing all SkyTeam applications and packages.
 
@@ -8,11 +11,12 @@ This is a monorepo containing all SkyTeam applications and packages.
 apps/
   ├── admin/     # Admin panel (Next.js)
   ├── api/       # Backend API (Express)
+  ├── models/    # ROBLOX MainModule Model (Rojo)
   ├── client/    # Discord bot (Discord.js + Discordx)
   └── web/       # Main website (Next.js)
 packages/
-  ├── database/  # Prisma database client
-  └── ui/        # Shared UI components
+  ├── database/  # Drizzle Postgre Database Client
+  └── ui/        # Shared UI Components between the Admin Panel and Main Website 
 ```
 
 ## Getting Started
@@ -58,12 +62,6 @@ This will start all applications in development mode:
 - `pnpm lint`: Lint all applications
 - `pnpm format`: Format all code with Prettier
 
-## Contributing
-
-1. Create a new branch for your feature
-2. Make your changes
-3. Create a pull request
-
 ## License
 
-Private - All rights reserved 
+GPL-3.0 - All rights reserved
