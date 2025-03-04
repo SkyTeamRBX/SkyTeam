@@ -1,6 +1,11 @@
 {
 	"name": "models",
 	"tree": {
-		"$path": "MainModule"
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"MainModule": {
+				"$path": "MainModule"
+			}
+		}
 	}
 }
