@@ -4,7 +4,10 @@
 		"$className": "DataModel",
 		"ReplicatedStorage": {
 			"MainModule": {
-				"$path": "MainModule"
+				"$path": "MainModule",
+				"Packages": {
+					"$path": "Packages"
+				}
 			}
 		}
 	}
