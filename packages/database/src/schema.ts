@@ -47,7 +47,7 @@ export const flights = pgTable('flights', {
 	arrival: text('arrival').notNull(),
 });
 
-export const flightPassengers = pgTable('flight_passengers', {
+export const flightPassengers = pgTable('flightPassengers', {
 	flightId: uuid('flightId')
 		.notNull()
 		.references(() => flights.id),
@@ -55,6 +55,6 @@ export const flightPassengers = pgTable('flight_passengers', {
 		.notNull()
 		.references(() => users.userId),
 	miles: integer('miles').notNull(),
-	createdAt: timestamp('createdAt').defaultNow().notNull(),
+	joinedAt: timestamp('joinedAt').defaultNow().notNull(),
 });
 

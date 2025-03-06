@@ -1,5 +1,4 @@
 import express from 'express';
-import cors from 'cors';
 import helmet from 'helmet';
 import { userRouter } from './routes/users';
 import { errorHandler } from './middleware/errorHandler';
@@ -10,7 +9,6 @@ const port = process.env.PORT || 4000;
 
 // Middleware
 app.use(helmet()); // Security headers
-app.use(cors()); // Enable CORS
 app.use(express.json()); // Parse JSON bodies
 app.use(requestLogger); // Log requests
 
@@ -28,4 +26,4 @@ app.use(errorHandler);
 // Start server
 app.listen(port, () => {
 	console.log(`🚀 API server running at http://localhost:${port}`);
-}); 
+});

@@ -11,12 +11,7 @@ export class ApiError extends Error {
 	}
 }
 
-export function errorHandler(
-	err: Error,
-	req: Request,
-	res: Response,
-	next: NextFunction
-) {
+export function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
 	console.error('Error:', err);
 
 	if (err instanceof ApiError) {
@@ -38,4 +33,4 @@ export function errorHandler(
 			}),
 		},
 	});
-} 
+}
