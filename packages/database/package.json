@@ -15,12 +15,14 @@
 		"db:studio": "drizzle-kit studio"
 	},
 	"dependencies": {
-		"drizzle-orm": "^0.29.4",
+		"@paralleldrive/cuid2": "^2.2.2",
+		"drizzle-orm": "^0.40.0",
+		"pg": "^8.13.3",
 		"postgres": "^3.4.3"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.24",
-		"drizzle-kit": "^0.20.14",
+		"drizzle-kit": "^0.30.5",
 		"eslint": "^8.57.0",
 		"tsup": "^8.0.2",
 		"typescript": "^5.3.3"
