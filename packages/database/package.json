@@ -10,8 +10,8 @@
 		"dev": "tsup src/index.ts --watch",
 		"lint": "eslint src/",
 		"clean": "rm -rf dist",
-		"db:generate": "drizzle-kit generate:pg",
-		"db:push": "drizzle-kit push:pg",
+		"db:generate": "drizzle-kit generate",
+		"db:push": "drizzle-kit push",
 		"db:studio": "drizzle-kit studio"
 	},
 	"dependencies": {
