@@ -1,5 +1,5 @@
 import type { CommandInteraction } from 'discord.js';
-import { EmbedBuilder } from 'discord.js';
+import { ContainerBuilder, MessageFlags, TextDisplayBuilder } from 'discord.js';
 import { Discord, Slash } from 'discordx';
 
 @Discord()
@@ -11,11 +11,18 @@ export class PingCommand {
 	})
 	async ping(interaction: CommandInteraction) {
 		await interaction.reply({
-			embeds: [
-				new EmbedBuilder()
-					.setTitle('Pong!')
-					.setDescription(`Ping: ${interaction.client.ws.ping}ms`),
+			flags: [
+				MessageFlags.IsComponentsV2,
+				MessageFlags.Ephemeral
 			],
+			components: [
+				new ContainerBuilder()
+					.addTextDisplayComponents(
+						new TextDisplayBuilder({
+							content: `Ping: ${interaction.client.ws.ping}ms`,
+						})
+					)
+			]
 		});
 	}
 }

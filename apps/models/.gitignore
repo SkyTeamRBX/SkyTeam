@@ -1,9 +1,4 @@
-# Project place file
-/MainModule.rbxmx
-
-# Roblox Studio lock files
-/*.rbxlx.lock
-/*.rbxl.lock
-
-# Wally Packages
-/Packages
+/node_modules
+/out
+/include
+*.tsbuildinfo

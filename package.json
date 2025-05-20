@@ -6,6 +6,8 @@
 		"build": "turbo run build",
 		"dev": "dotenv -- turbo run dev",
 		"dev:roblox": "dotenv -- pnpm run dev --filter @skyteam/models --filter @skyteam/api --filter @skyteam/database",
+		"db:studio": "dotenv -- pnpm --filter @skyteam/database db:studio",
+		"db:push": "dotenv -- pnpm --filter @skyteam/database db:push",
 		"lint": "turbo run lint",
 		"format": "prettier --write \"**/*.{ts,tsx,md,json}\""
 	},

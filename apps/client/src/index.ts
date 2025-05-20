@@ -28,7 +28,7 @@ export const bot = new Client({
 
 bot.once('ready', async () => {
 	await bot.initApplicationCommands();
-	bot.user?.setActivity('luxckxy yapping', { type: ActivityType.Listening });
+	bot.user?.setActivity({ type: ActivityType.Custom, name: '⬇️ DM the bot below for help' });
 
 	console.log('Bot initalized.');
 });

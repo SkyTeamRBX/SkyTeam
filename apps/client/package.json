@@ -14,8 +14,8 @@
 		"@discordx/pagination": "^3.5.6",
 		"@discordx/utilities": "^7.0.3",
 		"@skyteam/database": "workspace:*",
-		"discord.js": "^14.18.0",
-		"discordx": "^11.9.0"
+		"discord.js": "^14.19.3",
+		"discordx": "^11.12.4"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.24",

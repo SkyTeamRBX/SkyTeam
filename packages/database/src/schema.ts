@@ -13,6 +13,7 @@ export const users = pgTable('users', {
 export const airlines = pgTable('airlines', {
 	airlineId: text('airlineId').primaryKey(),
 	name: text('name').notNull(),
+	token: text('token').notNull().unique(),
 	createdAt: timestamp('createdAt').defaultNow().notNull(),
 	updatedAt: timestamp('updatedAt').defaultNow().notNull(),
 });
@@ -23,7 +24,9 @@ export const brands = pgTable('brands', {
 		.notNull()
 		.references(() => airlines.airlineId),
 	name: text('name').notNull(),
-	code: text('code').notNull().unique(),
+	iata: text('iata').notNull().unique(),
+	icao: text('icao').notNull().unique(),
+	callsign: text('callsign').notNull().unique(),
 	isPrimary: boolean('isPrimary').notNull().default(false),
 	logoUrl: text('logoUrl').default(
 		'https://files.skyteam.dev/api/public/dl/kiLB84P2?inline=true'
@@ -45,6 +48,7 @@ export const flights = pgTable('flights', {
 	codeshareAirlineId: text('codeshareAirlineId').references(() => airlines.airlineId),
 	departure: text('departure').notNull(),
 	arrival: text('arrival').notNull(),
+	startedAt: timestamp('startedAt'),
 });
 
 export const flightPassengers = pgTable('flightPassengers', {

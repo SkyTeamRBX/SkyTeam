@@ -1,13 +1,48 @@
 {
-	"name": "models",
+	"name": "roblox-ts-game",
+	"globIgnorePaths": [
+		"**/package.json",
+		"**/tsconfig.json"
+	],
 	"tree": {
 		"$className": "DataModel",
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+			"Loader": {
+				"$path": "out/loader"
+			}
+		},
 		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
 			"MainModule": {
-				"$path": "MainModule",
-				"Packages": {
-					"$path": "Packages"
+				"$path": "out/module",
+				"rbxts_include": {
+					"$path": "include",
+					"node_modules": {
+						"$className": "Folder",
+						"@rbxts": {
+							"$path": "node_modules/@rbxts"
+						}
+					}
 				}
+			}
+		},
+		"Workspace": {
+			"$className": "Workspace",
+			"$properties": {
+				"FilteringEnabled": true
+			}
+		},
+		"HttpService": {
+			"$className": "HttpService",
+			"$properties": {
+				"HttpEnabled": true
+			}
+		},
+		"SoundService": {
+			"$className": "SoundService",
+			"$properties": {
+				"RespectFilteringEnabled": true
 			}
 		}
 	}
