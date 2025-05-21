@@ -11,18 +11,14 @@ export class PingCommand {
 	})
 	async ping(interaction: CommandInteraction) {
 		await interaction.reply({
-			flags: [
-				MessageFlags.IsComponentsV2,
-				MessageFlags.Ephemeral
-			],
+			flags: [MessageFlags.IsComponentsV2, MessageFlags.Ephemeral],
 			components: [
-				new ContainerBuilder()
-					.addTextDisplayComponents(
-						new TextDisplayBuilder({
-							content: `Ping: ${interaction.client.ws.ping}ms`,
-						})
-					)
-			]
+				new ContainerBuilder().addTextDisplayComponents(
+					new TextDisplayBuilder({
+						content: `Ping: ${interaction.client.ws.ping}ms`,
+					})
+				),
+			],
 		});
 	}
 }
