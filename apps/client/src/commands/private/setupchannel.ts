@@ -43,12 +43,8 @@ export class SetupChannelCommand {
 									content:
 										"> SkyTeam ROBLOX is an alliance of exceptional virtual airlines looking to provide the best connected experience within our platform. We are the **most advanced alliance** on ROBLOX, with a focus on innovation, pride and community. With our 'Caring more about you' commitment, we are dedicated to providing the best experience for our passengers at our member airlines.",
 								})
-							)
-							.addSeparatorComponents(
-								new SeparatorBuilder({
-									spacing: SeparatorSpacingSize.Large,
-								})
-							)
+							),
+						new ContainerBuilder()
 							.addMediaGalleryComponents(
 								new MediaGalleryBuilder().addItems(
 									new MediaGalleryItemBuilder({
