@@ -6,7 +6,7 @@
 import Roact from "@rbxts/roact";
 import { Players, ReplicatedStorage } from "@rbxts/services";
 import ErrorMessage from "./ErrorMessage";
-import type CommunicationTypes from "../shared/CommunicationTypes"
+import type { EventTypeKeys, EventTypes } from "../shared/CommunicationTypes";
 
 const ClientCommunication = ReplicatedStorage.WaitForChild(".SKYTEAM_CLIENT_RUNTIME") as RemoteEvent
 const Player = Players.LocalPlayer
@@ -19,22 +19,24 @@ wait(.5)
  */
 if (script.Parent?.IsA("PlayerGui")) {
     script.Clone().Parent = Player.WaitForChild("PlayerScripts")
-} else {
-    script.Parent = undefined
+} else {    script.Parent = undefined
 
-    ClientCommunication.OnClientEvent.Connect((EventType: typeof CommunicationTypes[number], ...args: any[]) => {
-        switch (EventType) {
-            case "SERVER_INIT_ERROR":
+    ClientCommunication.OnClientEvent.Connect((eventType: EventTypeKeys, rawargs: unknown) => {
+        switch (eventType) {
+            case "SERVER_INIT_ERROR": {
+                const args = rawargs as EventTypes["SERVER_INIT_ERROR"];
+
                 Roact.mount(
                     <ErrorMessage
                         BackgroundColor={Color3.fromRGB(255, 149, 0)}
                         ElementColor={Color3.fromRGB(71, 41, 0)}
-                        Title="SkyTeam Authentication Failure"
-                        Body="The validity of your API Key cannot be verified. Please enter the correct API key ensuring that there are no spaces at the end or before the quotes.<br/><br/><b>Response 301</b>"
+                        Title="Service Initialization Error"
+                        Body={args.Body}
                     />,
                     Player.WaitForChild("PlayerGui")
-                )
+                );
                 break;
+            }
         }
     })
 }

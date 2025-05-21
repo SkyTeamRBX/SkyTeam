@@ -5,6 +5,7 @@
  */
 
 import { HttpService, Players, ReplicatedStorage } from "@rbxts/services";
+import { EventTypeKeys, EventTypes } from "./shared/CommunicationTypes";
 
 export interface Settings {
 	/**
@@ -56,14 +57,18 @@ export default class {
 			ClientScript.Parent = Player.WaitForChild("PlayerGui")
 
 			if (this.InitalizationError) {
-				this.RemoteEvent.FireClient(Player, "SERVER_INIT_ERROR", this.InitalizationError)
+				this.PublicError("SERVER_INIT_ERROR", {
+					Body: this.InitalizationError
+				})
 			}
 		})
 
 		this.TestServices().catch((err) => {
-			this.InitalizationError = err;
 			warn(err)
-			this.RemoteEvent.FireAllClients("SERVER_INIT_ERROR", err)
+			this.InitalizationError = err;
+			this.PublicError("SERVER_INIT_ERROR", {
+				Body: `SkyTeam module failed to initialize. Please contact a developer. Error: ${err}`,
+			})
 		})
 	}
 
@@ -80,5 +85,9 @@ export default class {
 
 			resolve(result);
 		});
+	}
+
+	private async PublicError<T extends EventTypeKeys>(WhichEvent: T, args: EventTypes[T]) {
+		this.RemoteEvent.FireAllClients(WhichEvent, args);
 	}
 }
