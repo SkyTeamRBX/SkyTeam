@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  admin:
+    build:
+      context: .
+      dockerfile: apps/admin/Dockerfile
+    container_name: skyteam-admin
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
+    networks:
+      - skyteam-network
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: skyteam-api
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - PORT=4000
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
+    networks:
+      - skyteam-network
+    restart: unless-stopped
+
+  client:
+    build:
+      context: .
+      dockerfile: apps/client/Dockerfile
+    container_name: skyteam-client
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - DISCORD_HOME_GUILD_ID=${DISCORD_HOME_GUILD_ID}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
+    networks:
+      - skyteam-network
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: skyteam-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+    networks:
+      - skyteam-network
+    restart: unless-stopped
+
+networks:
+  skyteam-network:
+    driver: bridge
+
