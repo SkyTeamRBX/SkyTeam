@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "@fontsource/special-gothic-expanded-one";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { ScrollSnapManager } from "@/components/site/scroll-snap-manager";

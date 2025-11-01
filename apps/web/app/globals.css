@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@fontsource/special-gothic-expanded-one";
 
 @plugin "tailwindcss-animate";
 @import "tw-animate-css";

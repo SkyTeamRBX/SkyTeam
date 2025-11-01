@@ -14,6 +14,7 @@ const nextConfig = {
       },
     ],
   },
+  transpilePackages: ['@fontsource/special-gothic-expanded-one'],
 };
 
 export default withContentlayer(nextConfig);
