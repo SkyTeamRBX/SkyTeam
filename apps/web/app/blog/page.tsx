@@ -32,7 +32,7 @@ export default function BlogIndex() {
 						</BreadcrumbItem>
 					</BreadcrumbList>
 				</Breadcrumb>
-				<h1 className="text-3xl font-bold mb-6">BLOG POSTS</h1>
+				<h1 className="text-3xl font-bold mb-6">BLOG</h1>
 				<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 					{posts.map((p: any) => (
 						<PostCard key={p.slug} post={p as any} />
