@@ -10,7 +10,5 @@
 		"rootDir": "./src"
 	},
 	"include": ["src/**/*"],
-	"references": [
-		{ "path": "../../packages/database" }
-	]
-} 
+	"references": [{ "path": "../../packages/database" }]
+}

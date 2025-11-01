@@ -1,3 +1,1 @@
-declare module 'contentlayer/generated';
-
-
+declare module "contentlayer/generated";

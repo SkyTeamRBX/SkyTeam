@@ -11,7 +11,7 @@ export interface Settings {
 	/**
 	 * @interface Settings
 	 * @description This interface is used to define the settings for the SkyTeam module.
-	 * 
+	 *
 	 * @property {string} TOKEN - The token for the module.
 	 * @property {string[]} Flags - The flags for the module.
 	 */
@@ -28,13 +28,13 @@ export interface Settings {
  */
 export default class {
 	private Settings: Settings;
-	public API: string = "http://localhost:4000"
+	public API: string = "http://localhost:4000";
 	public RemoteEvent: RemoteEvent = new Instance("RemoteEvent");
 	public Slocked: boolean = false;
 	public InitalizationError: string | undefined;
 
 	constructor(Settings: Settings) {
-		script.Parent = ReplicatedStorage
+		script.Parent = ReplicatedStorage;
 		this.Settings = Settings;
 	}
 
@@ -44,39 +44,39 @@ export default class {
 	 * @returns {void}
 	 */
 	public Initialize(): void {
-		this.RemoteEvent.Name = ".SKYTEAM_CLIENT_RUNTIME"
+		this.RemoteEvent.Name = ".SKYTEAM_CLIENT_RUNTIME";
 		this.RemoteEvent.Parent = ReplicatedStorage;
 
 		for (const Player of Players.GetPlayers()) {
-			const ClientScript = script.WaitForChild("client").Clone()
-			ClientScript.Parent = Player.WaitForChild("PlayerGui")
+			const ClientScript = script.WaitForChild("client").Clone();
+			ClientScript.Parent = Player.WaitForChild("PlayerGui");
 		}
 
 		Players.PlayerAdded.Connect((Player) => {
-			const ClientScript = script.WaitForChild("client").Clone()
-			ClientScript.Parent = Player.WaitForChild("PlayerGui")
+			const ClientScript = script.WaitForChild("client").Clone();
+			ClientScript.Parent = Player.WaitForChild("PlayerGui");
 
 			if (this.InitalizationError) {
 				this.PublicError("SERVER_INIT_ERROR", {
-					Body: this.InitalizationError
-				})
+					Body: this.InitalizationError,
+				});
 			}
-		})
+		});
 
 		this.TestServices().catch((err) => {
-			warn(err)
+			warn(err);
 			this.InitalizationError = err;
 			this.PublicError("SERVER_INIT_ERROR", {
 				Body: `SkyTeam module failed to initialize. Please contact a developer. Error: ${err}`,
-			})
-		})
+			});
+		});
 	}
 
 	private async TestServices(): Promise<any> {
 		return new Promise(async (resolve, reject) => {
 			const [success, result] = pcall(() => {
-				HttpService.GetAsync("https://example.com/")
-			})
+				HttpService.GetAsync("https://example.com/");
+			});
 
 			if (!success) {
 				reject(result);
@@ -87,7 +87,10 @@ export default class {
 		});
 	}
 
-	private async PublicError<T extends EventTypeKeys>(WhichEvent: T, args: EventTypes[T]) {
+	private async PublicError<T extends EventTypeKeys>(
+		WhichEvent: T,
+		args: EventTypes[T],
+	) {
 		this.RemoteEvent.FireAllClients(WhichEvent, args);
 	}
 }

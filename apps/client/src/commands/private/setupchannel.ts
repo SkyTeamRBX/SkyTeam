@@ -1,4 +1,4 @@
-import type { CommandInteraction } from 'discord.js';
+import type { CommandInteraction } from "discord.js";
 import {
 	ContainerBuilder,
 	MediaGalleryBuilder,
@@ -10,16 +10,16 @@ import {
 	SectionBuilder,
 	ButtonBuilder,
 	ButtonStyle,
-} from 'discord.js';
-import { Discord, Slash } from 'discordx';
+} from "discord.js";
+import { Discord, Slash } from "discordx";
 
 @Discord()
 export class SetupChannelCommand {
 	@Slash({
-		name: 'setupchannel',
-		description: 'Sets up a channel.',
+		name: "setupchannel",
+		description: "Sets up a channel.",
 		dmPermission: false,
-		defaultMemberPermissions: ['Administrator'],
+		defaultMemberPermissions: ["Administrator"],
 	})
 	async setupchannel(interaction: CommandInteraction) {
 		const channelName = interaction.channel?.name;
@@ -29,36 +29,36 @@ export class SetupChannelCommand {
 		});
 
 		switch (channelName) {
-			case 'portal':
+			case "portal":
 				await interaction.channel?.send({
-					content: 'https://files.skyteam.dev/api/public/dl/dir8x9Bc/Assets/Portal.png',
+					content:
+						"https://files.skyteam.dev/api/public/dl/dir8x9Bc/Assets/Portal.png",
 				});
 
 				await interaction.channel?.send({
 					flags: [MessageFlags.IsComponentsV2],
 					components: [
-						new ContainerBuilder()
-							.addTextDisplayComponents(
-								new TextDisplayBuilder({
-									content:
-										"> SkyTeam ROBLOX is an alliance of exceptional virtual airlines looking to provide the best connected experience within our platform. We are the **most advanced alliance** on ROBLOX, with a focus on innovation, pride and community. With our 'Caring more about you' commitment, we are dedicated to providing the best experience for our passengers at our member airlines.",
-								})
-							),
+						new ContainerBuilder().addTextDisplayComponents(
+							new TextDisplayBuilder({
+								content:
+									"> SkyTeam ROBLOX is an alliance of exceptional virtual airlines looking to provide the best connected experience within our platform. We are the **most advanced alliance** on ROBLOX, with a focus on innovation, pride and community. With our 'Caring more about you' commitment, we are dedicated to providing the best experience for our passengers at our member airlines.",
+							}),
+						),
 						new ContainerBuilder()
 							.addMediaGalleryComponents(
 								new MediaGalleryBuilder().addItems(
 									new MediaGalleryItemBuilder({
-										description: 'CommunitySafeguarding',
+										description: "CommunitySafeguarding",
 										media: {
-											url: 'https://files.skyteam.dev/api/public/dl/OuaEU0b4/Assets/CommunitySafeguarding.png',
+											url: "https://files.skyteam.dev/api/public/dl/OuaEU0b4/Assets/CommunitySafeguarding.png",
 										},
-									})
-								)
+									}),
+								),
 							)
 							.addTextDisplayComponents(
 								new TextDisplayBuilder({
 									content:
-										'-# SkyTeam Virtual has implemented a series of rules and regulations to maintain peace and security amongst our community. It is our expectation that each individual abides by every rule listed below.',
+										"-# SkyTeam Virtual has implemented a series of rules and regulations to maintain peace and security amongst our community. It is our expectation that each individual abides by every rule listed below.",
 								}),
 								new TextDisplayBuilder({
 									content: `
@@ -72,103 +72,108 @@ export class SetupChannelCommand {
 
 <:chevrongrey:1265399459886534730>_ _ *The [Discord Terms of Service](https://discord.com/terms) is also regulated and enforced in this server.*
 									`,
-								})
+								}),
 							)
 							.addSeparatorComponents(
 								new SeparatorBuilder({
 									spacing: SeparatorSpacingSize.Large,
-								})
+								}),
 							)
 							.addMediaGalleryComponents(
 								new MediaGalleryBuilder().addItems(
 									new MediaGalleryItemBuilder({
-										description: 'Links',
+										description: "Links",
 										media: {
-											url: 'https://files.skyteam.dev/api/public/dl/X9jntg4K/Assets/Links.png',
+											url: "https://files.skyteam.dev/api/public/dl/X9jntg4K/Assets/Links.png",
 										},
-									})
-								)
+									}),
+								),
 							)
 							.addSectionComponents(
 								new SectionBuilder()
 									.addTextDisplayComponents(
 										new TextDisplayBuilder({
 											content:
-												'<:discord:1231369743257043006>_ _ **Discord**',
-										})
+												"<:discord:1231369743257043006>_ _ **Discord**",
+										}),
 									)
 									.setButtonAccessory(
 										new ButtonBuilder()
-											.setLabel('Join (.gg/skyteam)')
-											.setURL('https://discord.gg/skyteam')
-											.setStyle(ButtonStyle.Link)
+											.setLabel("Join (.gg/skyteam)")
+											.setURL(
+												"https://discord.gg/skyteam",
+											)
+											.setStyle(ButtonStyle.Link),
 									),
 								new SectionBuilder()
 									.addTextDisplayComponents(
 										new TextDisplayBuilder({
 											content:
-												'<:twitter:1231369822676324504>_ _ **Twitter**',
-										})
+												"<:twitter:1231369822676324504>_ _ **Twitter**",
+										}),
 									)
 									.setButtonAccessory(
 										new ButtonBuilder()
-											.setLabel('Follow (@SkyTeam_RBX)')
-											.setURL('https://twitter.com/SkyTeam_RBX')
-											.setStyle(ButtonStyle.Link)
-									),
-								new SectionBuilder()
-									.addTextDisplayComponents(
-										new TextDisplayBuilder({
-											content: '<:roblox:1231369819908083792>_ _ **ROBLOX**',
-										})
-									)
-									.setButtonAccessory(
-										new ButtonBuilder()
-											.setLabel('Open (SkyTeam Virtual)')
+											.setLabel("Follow (@SkyTeam_RBX)")
 											.setURL(
-												'https://www.roblox.com/groups/33548693/SkyTeam-Virtual'
+												"https://twitter.com/SkyTeam_RBX",
 											)
-											.setStyle(ButtonStyle.Link)
+											.setStyle(ButtonStyle.Link),
 									),
 								new SectionBuilder()
 									.addTextDisplayComponents(
 										new TextDisplayBuilder({
 											content:
-												'<:affiliates:1231369739360800849>_ _ **Fact Sheet**',
-										})
+												"<:roblox:1231369819908083792>_ _ **ROBLOX**",
+										}),
 									)
 									.setButtonAccessory(
 										new ButtonBuilder()
-											.setLabel('View')
+											.setLabel("Open (SkyTeam Virtual)")
 											.setURL(
-												'https://office.skyteamrbx.com/share/slSYvGAnypOqdYR8ssyWyIMt4J5R37jOvcT6ShV8PE7eYPUtuI'
+												"https://www.roblox.com/groups/33548693/SkyTeam-Virtual",
 											)
-											.setStyle(ButtonStyle.Link)
+											.setStyle(ButtonStyle.Link),
+									),
+								new SectionBuilder()
+									.addTextDisplayComponents(
+										new TextDisplayBuilder({
+											content:
+												"<:affiliates:1231369739360800849>_ _ **Fact Sheet**",
+										}),
 									)
+									.setButtonAccessory(
+										new ButtonBuilder()
+											.setLabel("View")
+											.setURL(
+												"https://office.skyteamrbx.com/share/slSYvGAnypOqdYR8ssyWyIMt4J5R37jOvcT6ShV8PE7eYPUtuI",
+											)
+											.setStyle(ButtonStyle.Link),
+									),
 							)
 							.addTextDisplayComponents(
 								new TextDisplayBuilder({
 									content:
-										'_ _\nFrom the SkyTeam board, we want to thank you for joining and supporting our group of airlines. We take immense pride in our services, and your presence adds tremendous value to our journey.\n\n**Thank you.**\n\n-# We want to make it clear that we **do not represent** ourselves as the real life SkyTeam alliance, rather a roblox recreation/parody.',
-								})
+										"_ _\nFrom the SkyTeam board, we want to thank you for joining and supporting our group of airlines. We take immense pride in our services, and your presence adds tremendous value to our journey.\n\n**Thank you.**\n\n-# We want to make it clear that we **do not represent** ourselves as the real life SkyTeam alliance, rather a roblox recreation/parody.",
+								}),
 							)
 							.addSeparatorComponents(
 								new SeparatorBuilder({
 									spacing: SeparatorSpacingSize.Large,
-								})
+								}),
 							)
 							.addTextDisplayComponents(
 								new TextDisplayBuilder({
-									content: '-# Caring more about you',
-								})
+									content: "-# Caring more about you",
+								}),
 							),
 					],
 				});
 				break;
-			case 'affiliates':
+			case "affiliates":
 				await interaction.channel?.send({
 					content:
-						'https://files.skyteam.dev/api/public/dl/5GAYQdYA/Assets/Affiliates.png',
+						"https://files.skyteam.dev/api/public/dl/5GAYQdYA/Assets/Affiliates.png",
 				});
 		}
 
@@ -177,8 +182,8 @@ export class SetupChannelCommand {
 			components: [
 				new ContainerBuilder().addTextDisplayComponents(
 					new TextDisplayBuilder({
-						content: 'Channel setup complete.',
-					})
+						content: "Channel setup complete.",
+					}),
 				),
 			],
 		});

@@ -1,13 +1,13 @@
-import { fetchAirlineByToken } from '@skyteam/database';
-import { Request, Response, NextFunction } from 'express';
+import { fetchAirlineByToken } from "@skyteam/database";
+import { Request, Response, NextFunction } from "express";
 
 export function authenticate(req: Request, res: Response, next: NextFunction) {
-	const apiKey = req.headers['x-api-key'];
+	const apiKey = req.headers["x-api-key"];
 
 	if (!apiKey) {
 		return res.status(400).json({
 			error: {
-				message: 'No API key provided',
+				message: "No API key provided",
 			},
 		});
 	}
@@ -16,7 +16,7 @@ export function authenticate(req: Request, res: Response, next: NextFunction) {
 		if (!airline) {
 			return res.status(401).json({
 				error: {
-					message: 'Invalid API key',
+					message: "Invalid API key",
 				},
 			});
 		}

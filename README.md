@@ -1,4 +1,5 @@
 # SkyTeam ROBLOX
+
 <p align="left">
 <sub><b>SkyTeamRBX nor this project is in no way affiliated with the SkyTeam Airline Alliance, its member airlines, subsidaries or airlines listed in this project. The usage of logos is not approved by the respective companies.</b></sub>
 </p>
@@ -16,7 +17,7 @@ apps/
   └── web/       # Main website (Next.js)
 packages/
   ├── database/  # Drizzle Postgre Database Client
-  └── ui/        # Shared UI Components between the Admin Panel and Main Website 
+  └── ui/        # Shared UI Components between the Admin Panel and Main Website
 ```
 
 ## Getting Started
@@ -30,26 +31,30 @@ packages/
 ### Setup
 
 1. Install dependencies:
-   ```bash
-   pnpm install
-   ```
+
+    ```bash
+    pnpm install
+    ```
 
 2. Set up environment variables:
-   - Copy `.env.example` to `.env` in the root directory
-   - Set up your database connection string in `DATABASE_URL`
-   - For the Discord bot, set up your `DISCORD_TOKEN`
+
+    - Copy `.env.example` to `.env` in the root directory
+    - Set up your database connection string in `DATABASE_URL`
+    - For the Discord bot, set up your `DISCORD_TOKEN`
 
 3. Initialize the database:
-   ```bash
-   pnpm --filter @skyteam/database db:push
-   ```
+
+    ```bash
+    pnpm --filter @skyteam/database db:push
+    ```
 
 4. Start development servers:
-   ```bash
-   pnpm dev
-   ```
+    ```bash
+    pnpm dev
+    ```
 
 This will start all applications in development mode:
+
 - Web: http://localhost:3000
 - Admin: http://localhost:3001
 - API: http://localhost:4000

@@ -1,8 +1,13 @@
-import { dirname, importx } from '@discordx/importer';
-import { NotBot } from '@discordx/utilities';
-import type { Message } from 'discord.js';
-import { ActivityType, EmbedBuilder, IntentsBitField, Partials } from 'discord.js';
-import { Client } from 'discordx';
+import { dirname, importx } from "@discordx/importer";
+import { NotBot } from "@discordx/utilities";
+import type { Message } from "discord.js";
+import {
+	ActivityType,
+	EmbedBuilder,
+	IntentsBitField,
+	Partials,
+} from "discord.js";
+import { Client } from "discordx";
 
 export const bot = new Client({
 	intents: [
@@ -15,31 +20,39 @@ export const bot = new Client({
 		IntentsBitField.Flags.DirectMessages,
 		IntentsBitField.Flags.DirectMessageTyping,
 	],
-	partials: [Partials.Message, Partials.Channel, Partials.Reaction, Partials.User],
+	partials: [
+		Partials.Message,
+		Partials.Channel,
+		Partials.Reaction,
+		Partials.User,
+	],
 
 	botGuilds: [process.env.DISCORD_HOME_GUILD_ID],
 
 	silent: false,
 	guards: [NotBot],
 	simpleCommand: {
-		prefix: 'st!',
+		prefix: "st!",
 	},
 });
 
-bot.once('ready', async () => {
+bot.once("ready", async () => {
 	await bot.initApplicationCommands();
-	bot.user?.setActivity({ type: ActivityType.Custom, name: '⬇️ DM the bot below for help' });
+	bot.user?.setActivity({
+		type: ActivityType.Custom,
+		name: "⬇️ DM the bot below for help",
+	});
 
-	console.log('Bot initalized.');
+	console.log("Bot initalized.");
 });
 
-bot.on('interactionCreate', (interaction) => {
+bot.on("interactionCreate", (interaction) => {
 	try {
 		bot.executeInteraction(interaction);
 	} catch (error) {
 		const errEmbed = new EmbedBuilder()
 			.setDescription(
-				`<:warning:1204923305895665705>_ _ An error occured whilst trying to run this command; please try again later.`
+				`<:warning:1204923305895665705>_ _ An error occured whilst trying to run this command; please try again later.`,
 			)
 			.setTimestamp();
 
@@ -49,25 +62,35 @@ bot.on('interactionCreate', (interaction) => {
 
 		const log = new EmbedBuilder()
 			.setDescription(
-				'<:alert:1255679013158916177>_ _ An error occured :( \n**Error:** ```\n' +
+				"<:alert:1255679013158916177>_ _ An error occured :( \n**Error:** ```\n" +
 					error +
-					'\n```'
+					"\n```",
 			)
 			.setFields([
-				{ name: 'User', value: `<@${interaction.user.id}>`, inline: true },
-				{ name: 'Channel', value: `<#${interaction.channel?.id}>`, inline: true },
+				{
+					name: "User",
+					value: `<@${interaction.user.id}>`,
+					inline: true,
+				},
+				{
+					name: "Channel",
+					value: `<#${interaction.channel?.id}>`,
+					inline: true,
+				},
 			]);
 	}
 });
 
-bot.on('messageCreate', async (message: Message) => {
+bot.on("messageCreate", async (message: Message) => {
 	await bot.executeCommand(message);
 });
 
-await importx(`${dirname(import.meta.url)}/{events,commands,guards}/**/*.{ts,js}`);
+await importx(
+	`${dirname(import.meta.url)}/{events,commands,guards}/**/*.{ts,js}`,
+);
 
 if (!process.env.DISCORD_TOKEN) {
-	throw Error('Bot token not found.');
+	throw Error("Bot token not found.");
 }
 
 bot.login(process.env.DISCORD_TOKEN);

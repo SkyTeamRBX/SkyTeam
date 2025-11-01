@@ -1,35 +1,35 @@
 {
-  "name": "@skyteam/models",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "rbxtsc",
-    "dev:watch": "rbxtsc --type game -w",
-    "dev:serve": "rojo serve",
-    "dev": "concurrently \"pnpm run dev:watch\" \"pnpm run dev:serve\""
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.5.2",
-  "devDependencies": {
-    "@rbxts/compiler-types": "3.0.0-types.0",
-    "@rbxts/types": "^1.0.843",
-    "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "@typescript-eslint/parser": "^8.28.0",
-    "concurrently": "^9.1.2",
-    "eslint": "^9.23.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-prettier": "^5.2.5",
-    "eslint-plugin-roblox-ts": "^0.0.36",
-    "prettier": "^3.5.3",
-    "roblox-ts": "^3.0.0",
-    "typescript": "^5.8.2"
-  },
-  "dependencies": {
-    "@rbxts/ripple": "^0.9.3",
-    "@rbxts/roact": "^3.0.1",
-    "@rbxts/services": "^1.5.5"
-  }
+	"name": "@skyteam/models",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "rbxtsc",
+		"dev:watch": "rbxtsc --type game -w",
+		"dev:serve": "rojo serve",
+		"dev": "concurrently \"pnpm run dev:watch\" \"pnpm run dev:serve\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.5.2",
+	"devDependencies": {
+		"@rbxts/compiler-types": "3.0.0-types.0",
+		"@rbxts/types": "^1.0.843",
+		"@typescript-eslint/eslint-plugin": "^8.28.0",
+		"@typescript-eslint/parser": "^8.28.0",
+		"concurrently": "^9.1.2",
+		"eslint": "^9.23.0",
+		"eslint-config-prettier": "^10.1.1",
+		"eslint-plugin-prettier": "^5.2.5",
+		"eslint-plugin-roblox-ts": "^0.0.36",
+		"prettier": "^3.5.3",
+		"roblox-ts": "^3.0.0",
+		"typescript": "^5.8.2"
+	},
+	"dependencies": {
+		"@rbxts/ripple": "^0.9.3",
+		"@rbxts/roact": "^3.0.1",
+		"@rbxts/services": "^1.5.5"
+	}
 }

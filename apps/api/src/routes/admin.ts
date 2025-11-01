@@ -1,16 +1,21 @@
-import { Router } from 'express';
-import { fetchAllAirlines, createAirline, fetchAllBrands, createBrand } from '@skyteam/database';
+import { Router } from "express";
+import {
+	fetchAllAirlines,
+	createAirline,
+	fetchAllBrands,
+	createBrand,
+} from "@skyteam/database";
 
 export const adminRouter = Router();
 
 adminRouter.use((req, res, next) => {
-    if (req.header('x-token') !== process.env.ADMIN_JWT_SECRET) {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-    next();
-})
+	if (req.header("x-token") !== process.env.ADMIN_JWT_SECRET) {
+		return res.status(401).json({ error: "Unauthorized" });
+	}
+	next();
+});
 
-adminRouter.get('/fetchAirlines', async (req, res) => {
+adminRouter.get("/fetchAirlines", async (req, res) => {
 	res.json(await fetchAllAirlines());
 });
 
@@ -21,15 +26,15 @@ adminRouter.get('/fetchAirlines', async (req, res) => {
         "name": "Brand Name",
     }
  */
-adminRouter.post('/createAirline', async (req, res) => {
-    const airline = await createAirline(req.body);
-    res.json(airline);
+adminRouter.post("/createAirline", async (req, res) => {
+	const airline = await createAirline(req.body);
+	res.json(airline);
 });
 
 // # BRANDS
 
-adminRouter.get('/fetchBrands', async (req, res) => {
-    res.json(await fetchAllBrands());
+adminRouter.get("/fetchBrands", async (req, res) => {
+	res.json(await fetchAllBrands());
 });
 
 /**
@@ -48,8 +53,7 @@ adminRouter.get('/fetchBrands', async (req, res) => {
         "elementColor": "#fbfbfb"
     }
  */
-adminRouter.post('/createBrand', async (req, res) => {
-    const brand = await createBrand(req.body);
-    res.json(brand);
+adminRouter.post("/createBrand", async (req, res) => {
+	const brand = await createBrand(req.body);
+	res.json(brand);
 });
-

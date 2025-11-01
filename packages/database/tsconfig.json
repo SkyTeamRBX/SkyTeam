@@ -12,4 +12,4 @@
 		"rootDir": "./src"
 	},
 	"include": ["src/**/*"]
-} 
+}
