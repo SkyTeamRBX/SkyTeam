@@ -1,6 +1,4 @@
 {
-	"printWidth": 120,
-	"tabWidth": 4,
-	"trailingComma": "all",
-	"useTabs": true
+	"useTabs": true,
+	"tabWidth": 4
 }

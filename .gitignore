@@ -2,6 +2,7 @@
 node_modules
 .pnp
 .pnp.js
+.pnpm-store/
 
 # Testing
 coverage
@@ -15,6 +16,7 @@ dist
 # Misc
 .DS_Store
 *.pem
+.contentlayer/
 
 # Debug
 npm-debug.log*

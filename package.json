@@ -9,12 +9,13 @@
 		"db:studio": "dotenv -- pnpm --filter @skyteam/database db:studio",
 		"db:push": "dotenv -- pnpm --filter @skyteam/database db:push",
 		"lint": "turbo run lint",
-		"format": "prettier --write \"**/*.{ts,tsx,md,json}\""
+		"format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,mdx,css,scss,yaml,yml}\" --ignore-path .gitignore"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.24",
 		"dotenv-cli": "^8.0.0",
 		"prettier": "^3.2.5",
+		"tsup": "^8.0.2",
 		"turbo": "^2.4.4",
 		"typescript": "^5.3.3"
 	},
