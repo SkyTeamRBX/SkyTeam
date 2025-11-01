@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { allPosts } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/site/container";
@@ -19,6 +20,50 @@ export async function generateStaticParams() {
 	return (allPosts as any[])
 		.filter((p: any) => p.published)
 		.map((p: any) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+	const { slug } = await params;
+	const post = (allPosts as any[]).find((p: any) => p.slug === slug);
+
+	if (!post || !post.published) {
+		return {
+			title: "Post Not Found",
+		};
+	}
+
+	const bannerUrl = post.banner || "/images/BannerImage.png";
+	const fullBannerUrl =
+		bannerUrl.startsWith("http") || bannerUrl.startsWith("/")
+			? bannerUrl
+			: `${process.env.NEXT_PUBLIC_SITE_URL || "https://skyteam.dev"}${bannerUrl}`;
+
+	return {
+		title: post.title,
+		description: post.description,
+		openGraph: {
+			title: post.title,
+			description: post.description,
+			images: [
+				{
+					url: fullBannerUrl,
+					width: 1200,
+					height: 630,
+					alt: post.title,
+				},
+			],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: post.title,
+			description: post.description,
+			images: [fullBannerUrl],
+		},
+	};
 }
 
 export default async function PostPage({
