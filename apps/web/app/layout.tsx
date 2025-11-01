@@ -5,9 +5,12 @@ import { Footer } from "@/components/site/footer";
 import { ScrollSnapManager } from "@/components/site/scroll-snap-manager";
 
 export const metadata: Metadata = {
-	title: "SkyTeam Blog",
+	title: "SkyTeam ROBLOX",
 	description:
-		"A boilerplate blog built with Next.js, Tailwind, and shadcn/ui.",
+		"SkyTeam ROBLOX is an alliance of exceptional virtual airlines looking to provide the best connected experience within our platform.",
+	icons: {
+		icon: "/favicon.ico",
+	},
 };
 
 export default function RootLayout({
