@@ -23,6 +23,10 @@ RUN pnpm install --frozen-lockfile --include-workspace-root
 COPY packages ./packages
 COPY apps/admin ./apps/admin
 
+# Ensure public directory exists (create if it doesn't)
+# Add a placeholder file so the directory can be copied later
+RUN mkdir -p apps/admin/public && touch apps/admin/public/.gitkeep
+
 # Reinstall to ensure workspace links are correct after copying source files
 RUN pnpm install --frozen-lockfile --prefer-offline
 
@@ -38,7 +42,7 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@10.5.2 --activate
@@ -56,6 +60,7 @@ RUN pnpm install --prod --frozen-lockfile
 COPY --from=base /app/packages/database/dist ./packages/database/dist
 COPY --from=base /app/packages/ui/dist ./packages/ui/dist
 COPY --from=base /app/apps/admin/.next ./apps/admin/.next
+# Copy public directory (created in base stage with .gitkeep placeholder)
 COPY --from=base /app/apps/admin/public ./apps/admin/public
 COPY --from=base /app/apps/admin/next.config.ts ./apps/admin/
 COPY --from=base /app/apps/admin/package.json ./apps/admin/

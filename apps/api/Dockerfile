@@ -36,7 +36,7 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@10.5.2 --activate
