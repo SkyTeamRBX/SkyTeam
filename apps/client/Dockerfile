@@ -15,12 +15,15 @@ COPY turbo.json ./
 COPY packages/database/package.json ./packages/database/
 COPY apps/client/package.json ./apps/client/
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+# Install all dependencies (including devDependencies for build)
+RUN pnpm install --frozen-lockfile --include-workspace-root
 
 # Copy source files
 COPY packages/database ./packages/database
 COPY apps/client ./apps/client
+
+# Reinstall to ensure workspace links are correct after copying source files
+RUN pnpm install --frozen-lockfile --prefer-offline
 
 # Build dependencies first
 RUN pnpm --filter @skyteam/database build

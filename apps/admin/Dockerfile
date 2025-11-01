@@ -16,12 +16,15 @@ COPY packages/database/package.json ./packages/database/
 COPY packages/ui/package.json ./packages/ui/
 COPY apps/admin/package.json ./apps/admin/
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+# Install all dependencies (including devDependencies for build)
+RUN pnpm install --frozen-lockfile --include-workspace-root
 
 # Copy source files
 COPY packages ./packages
 COPY apps/admin ./apps/admin
+
+# Reinstall to ensure workspace links are correct after copying source files
+RUN pnpm install --frozen-lockfile --prefer-offline
 
 # Build dependencies first
 RUN pnpm --filter @skyteam/database build
@@ -57,6 +60,8 @@ COPY --from=base /app/apps/admin/public ./apps/admin/public
 COPY --from=base /app/apps/admin/next.config.ts ./apps/admin/
 COPY --from=base /app/apps/admin/package.json ./apps/admin/
 COPY --from=base /app/apps/admin/tsconfig.json ./apps/admin/
+COPY --from=base /app/apps/admin/postcss.config.mjs ./apps/admin/
+COPY --from=base /app/apps/admin/tailwind.config.js ./apps/admin/
 
 WORKDIR /app/apps/admin
 
