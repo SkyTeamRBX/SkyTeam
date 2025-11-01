@@ -12,14 +12,14 @@ import {
 import { Button } from "@/components/ui/button";
 
 const airlines = [
-	{ name: "Air France", slug: "air-france" },
-	{ name: "KLM", slug: "klm" },
 	{ name: "Delta Air Lines", slug: "delta" },
+	{ name: "KLM Royal Dutch Airlines", slug: "klm" },
+	{ name: "Garuda Indonesia", slug: "garuda" },
+	{ name: "Korean Air", slug: "korean" },
+	{ name: "Transavia", slug: "transavia" },
+	{ name: "Vietnam Airlines", slug: "vietnam" },
+	{ name: "Saudi Airlines", slug: "saudia" },
 	{ name: "Aeroflot", slug: "aeroflot" },
-	{ name: "China Eastern", slug: "china-eastern" },
-	{ name: "China Southern", slug: "china-southern" },
-	{ name: "Czech Airlines", slug: "czech-airlines" },
-	{ name: "Korean Air", slug: "korean-air" },
 ];
 
 export function Header() {
