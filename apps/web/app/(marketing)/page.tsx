@@ -15,7 +15,7 @@ export default function LandingPage() {
 	return (
 		<div className="pb-16">
 			{/* Fullscreen banner with bottom-left text */}
-			<section className="relative h-[80svh] w-full">
+			<section className="relative h-[80svh] w-full -mt-[72px] pt-[72px]">
 				<Image
 					src="/images/LandingPage.png"
 					alt="Caring more about you"

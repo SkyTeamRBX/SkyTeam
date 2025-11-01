@@ -32,7 +32,7 @@ export default async function PostPage({
 
 	return (
 		<ScrollSnapWrapper>
-			<div>
+			<div className="-mt-[72px]">
 				{/* Full-width banner */}
 				<div className="relative w-full h-[400px] md:h-[500px] overflow-visible snap-end min-h-[400px] md:min-h-[500px]">
 					{/* Blurred background for glow effect */}

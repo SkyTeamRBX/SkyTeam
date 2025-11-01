@@ -13,11 +13,11 @@ export function Footer() {
 			<footer className="border-t min-h-[50vh] bg-gradient-to-b from-accent/50 to-transparent">
 				<div className="mx-auto max-w-6xl px-4 py-12">
 					{/* Top section with logo and disclaimer */}
-					<div className="mb-8 flex items-center gap-10 flex-col md:flex-row">
-						<div>
+					<div className="mb-8 flex items-center justify-between gap-10 flex-col md:flex-row">
+						<div className="flex-shrink-0">
 							<Logo scale={1.2} />
 						</div>
-						<p className="text-xs text-muted-foreground max-w-2xl">
+						<p className="text-xs text-muted-foreground max-w-100 text-right md:text-right">
 							We want to make it clear that we do not represent
 							ourselves as the real life SkyTeam alliance, rather
 							a roblox recreation/parody.
