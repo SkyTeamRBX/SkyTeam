@@ -24,7 +24,7 @@ const airlines = [
 
 export function Header() {
 	return (
-		<header className="sticky top-0 z-40 w-full border-b backdrop-blur-xl bg-background/80 h-[72px] min-h-[72px]">
+		<header className="sticky top-0 z-40 w-full border-b backdrop-blur-xl h-[72px] min-h-[72px]">
 			<div className="mx-auto max-w-6xl px-4 h-full min-h-[72px] flex items-center justify-between">
 				<Logo />
 
