@@ -225,6 +225,9 @@ importers:
       '@skyteam/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@tailwindcss/postcss':
+        specifier: ^4.0.9
+        version: 4.0.14
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
