@@ -137,7 +137,17 @@ export default async function PostPage({
 							</h1>
 							<p className="not-prose text-sm text-muted-foreground mt-2 mb-8">
 								<time dateTime={post.date}>
-									{new Date(post.date).toLocaleDateString()}
+									{(() => {
+										const date = new Date(post.date);
+										const day = String(
+											date.getDate(),
+										).padStart(2, "0");
+										const month = String(
+											date.getMonth() + 1,
+										).padStart(2, "0");
+										const year = date.getFullYear();
+										return `${day}/${month}/${year}`;
+									})()}
 								</time>
 							</p>
 							<article className="prose prose-neutral dark:prose-invert max-w-none">
