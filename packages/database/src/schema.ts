@@ -5,6 +5,7 @@ import {
 	integer,
 	boolean,
 	uuid,
+	bigint,
 } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
@@ -21,6 +22,12 @@ export const airlines = pgTable("airlines", {
 	airlineId: text("airlineId").primaryKey(),
 	name: text("name").notNull(),
 	token: text("token").notNull().unique(),
+	inviteLink: text("inviteLink")
+		.notNull()
+		.default("https://discord.gg/skyteam"),
+	serverId: bigint("serverId", { mode: "number" })
+		.notNull()
+		.default(1122953128703168532),
 	createdAt: timestamp("createdAt").defaultNow().notNull(),
 	updatedAt: timestamp("updatedAt").defaultNow().notNull(),
 });
@@ -62,6 +69,9 @@ export const flights = pgTable("flights", {
 	departure: text("departure").notNull(),
 	arrival: text("arrival").notNull(),
 	startedAt: timestamp("startedAt"),
+	discordEventLink: text("discordEventLink")
+		.notNull()
+		.default("https://discord.gg/skyteam"),
 });
 
 export const flightPassengers = pgTable("flightPassengers", {
@@ -73,4 +83,18 @@ export const flightPassengers = pgTable("flightPassengers", {
 		.references(() => users.userId),
 	miles: integer("miles").notNull(),
 	joinedAt: timestamp("joinedAt").defaultNow().notNull(),
+});
+
+export const milesTransactions = pgTable("milesTransactions", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	userId: text("userId")
+		.notNull()
+		.references(() => users.userId),
+	amount: integer("amount").notNull(), // positive for earn, negative for spend
+	type: text("type").notNull(), // 'earn' | 'spend'
+	source: text("source").notNull(), // e.g. 'flight' | 'purchase'
+	flightId: uuid("flightId").references(() => flights.id),
+	productId: text("productId"),
+	note: text("note"),
+	createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
