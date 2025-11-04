@@ -5,7 +5,6 @@ import {
 	integer,
 	boolean,
 	uuid,
-	bigint,
 } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
@@ -25,9 +24,7 @@ export const airlines = pgTable("airlines", {
 	inviteLink: text("inviteLink")
 		.notNull()
 		.default("https://discord.gg/skyteam"),
-	serverId: bigint("serverId", { mode: "number" })
-		.notNull()
-		.default(1122953128703168532),
+	serverId: text("serverId").notNull().default("1122953128703168532"),
 	createdAt: timestamp("createdAt").defaultNow().notNull(),
 	updatedAt: timestamp("updatedAt").defaultNow().notNull(),
 });
@@ -96,5 +93,18 @@ export const milesTransactions = pgTable("milesTransactions", {
 	flightId: uuid("flightId").references(() => flights.id),
 	productId: text("productId"),
 	note: text("note"),
+	createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+// miles products that airlines can offer through the skyteam admin panel
+export const milesProducts = pgTable("milesProducts", {
+	productId: text("productId").primaryKey(),
+	airlineId: text("airlineId")
+		.notNull()
+		.references(() => airlines.airlineId),
+	name: text("name").notNull(),
+	description: text("description"),
+	priceMiles: integer("priceMiles").notNull(),
+	active: boolean("active").notNull().default(true),
 	createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
