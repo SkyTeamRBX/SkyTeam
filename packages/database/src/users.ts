@@ -5,6 +5,7 @@ import { increment } from "./utils";
 import { addMilesTransaction } from "./miles";
 
 export type User = typeof users.$inferSelect;
+export type DbTransaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
 
 /**
  * Fetches a user by their Roblox user ID from the database
@@ -33,7 +34,7 @@ export async function createUser(data: {
 export async function incrementMiles(
 	userId: string,
 	amount = 1,
-	tx?: any,
+	tx?: DbTransaction,
 ): Promise<User | null> {
 	const dbInstance = tx || db;
 	const result = await dbInstance

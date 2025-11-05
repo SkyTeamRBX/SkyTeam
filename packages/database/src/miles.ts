@@ -1,6 +1,7 @@
 import { db } from "./db";
 import { milesTransactions } from "./schema";
 import { eq } from "drizzle-orm";
+import type { DbTransaction } from "./users";
 
 export type MilesTransaction = typeof milesTransactions.$inferSelect;
 
@@ -14,7 +15,7 @@ export async function addMilesTransaction(
 		productId?: string;
 		note?: string;
 	},
-	tx?: any,
+	tx?: DbTransaction,
 ): Promise<MilesTransaction> {
 	const dbInstance = tx || db;
 	const result = await dbInstance.insert(milesTransactions).values(data).returning();

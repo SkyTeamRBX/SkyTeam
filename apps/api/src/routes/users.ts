@@ -97,10 +97,6 @@ router.post("/user/:id/buyProduct", async (req, res, next) => {
 			`Purchase: ${product.name}`,
 		);
 
-		if (!updated) {
-			return res.status(400).json({ error: "Insufficient miles" });
-		}
-
 		res.json({ ok: true, user: updated, product });
 	} catch (err) {
 		if (err instanceof Error && err.message === "Insufficient miles") {
