@@ -91,10 +91,6 @@ router.post("/user/:id/buyProduct", async (req, res, next) => {
 		if (!product)
 			return res.status(404).json({ error: "Product not found" });
 
-		if (user.miles < product.priceMiles) {
-			return res.status(400).json({ error: "Insufficient miles" });
-		}
-
 		const updated = await spendMiles(
 			userId,
 			product.priceMiles,
@@ -103,6 +99,9 @@ router.post("/user/:id/buyProduct", async (req, res, next) => {
 
 		res.json({ ok: true, user: updated, product });
 	} catch (err) {
+		if (err instanceof Error && err.message === "Insufficient miles") {
+			return res.status(400).json({ error: "Insufficient miles" });
+		}
 		next(err);
 	}
 });

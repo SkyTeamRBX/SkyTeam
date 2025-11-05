@@ -11,19 +11,22 @@ export async function addPassengerToFlight(data: {
 	userId: string;
 	miles: number;
 }): Promise<FlightPassenger> {
-	const [passenger] = await Promise.all([
-		db.insert(flightPassengers).values(data).returning(),
-		incrementMiles(data.userId, data.miles),
-		addMilesTransaction({
-			userId: data.userId,
-			amount: data.miles,
-			type: "earn",
-			source: "flight",
-			flightId: data.flightId,
-			note: "Miles earned from flight",
-		}),
-	]);
-	return passenger[0];
+	return await db.transaction(async (tx) => {
+		const inserted = await tx.insert(flightPassengers).values(data).returning();
+		await incrementMiles(data.userId, data.miles, tx);
+		await addMilesTransaction(
+			{
+				userId: data.userId,
+				amount: data.miles,
+				type: "earn",
+				source: "flight",
+				flightId: data.flightId,
+				note: "Miles earned from flight",
+			},
+			tx,
+		);
+		return inserted[0];
+	});
 }
 
 export async function fetchFlightPassengers(
