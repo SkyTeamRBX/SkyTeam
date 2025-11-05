@@ -20,6 +20,11 @@ declare global {
 const app = express();
 const port = process.env.PORT || 4000;
 
+// Health check endpoint
+app.get("/health", (req, res) => {
+	res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
 // Middleware
 app.use(helmet()); // Security headers
 app.use(express.json()); // Parse JSON bodies
@@ -29,14 +34,9 @@ app.use(requestLogger); // Log requests
 app.use("/admin", adminRouter);
 
 // Airline Routes
-app.use(authenticate); // Authenticate requests for Routes below
-app.use("/api/users", userRouter);
+// app.use(authenticate); // Authenticate requests for Routes below
 app.use("/flights", flightRouter);
-
-// Health check endpoint
-app.get("/health", (req, res) => {
-	res.json({ status: "ok", timestamp: new Date().toISOString() });
-});
+app.use("/api/users", userRouter);
 
 // Error handling
 app.use(errorHandler);
