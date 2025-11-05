@@ -21,5 +21,5 @@ GET /airline/fetchProductsData -> return airline's products
 
 ## User Data
 
-GET /users/fetchUserData
+POST /users/fetchUsersData
 POST /user/[id]/buyProduct

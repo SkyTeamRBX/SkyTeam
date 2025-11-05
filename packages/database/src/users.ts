@@ -30,8 +30,13 @@ export async function createUser(data: {
 /**
  * Increments the miles for a user
  */
-export async function incrementMiles(userId: string, amount = 1): Promise<User | null> {
-	const result = await db
+export async function incrementMiles(
+	userId: string,
+	amount = 1,
+	tx?: any,
+): Promise<User | null> {
+	const dbInstance = tx || db;
+	const result = await dbInstance
 		.update(users)
 		.set({ miles: increment(users.miles, amount) })
 		.where(eq(users.userId, userId))
@@ -39,16 +44,40 @@ export async function incrementMiles(userId: string, amount = 1): Promise<User |
 	return result[0] || null;
 }
 
-export async function spendMiles(userId: string, amount: number, note?: string): Promise<User | null> {
+export async function spendMiles(
+	userId: string,
+	amount: number,
+	note?: string,
+): Promise<User | null> {
 	if (amount <= 0) throw new Error("amount must be positive");
-	const updated = await db
-		.update(users)
-		.set({ miles: increment(users.miles, -amount) })
-		.where(eq(users.userId, userId))
-		.returning();
-	const user = updated[0] || null;
-	await addMilesTransaction({ userId, amount: -amount, type: "spend", source: "purchase", note });
-	return user;
+
+	return await db.transaction(async (tx) => {
+		// Fetch user to check balance
+		const userResult = await tx
+			.select()
+			.from(users)
+			.where(eq(users.userId, userId))
+			.limit(1);
+		const user = userResult[0];
+
+		if (!user) throw new Error("User not found");
+		if (user.miles < amount) throw new Error("Insufficient miles");
+
+		// Update miles
+		const updated = await tx
+			.update(users)
+			.set({ miles: increment(users.miles, -amount) })
+			.where(eq(users.userId, userId))
+			.returning();
+
+		// Add transaction record
+		await addMilesTransaction(
+			{ userId, amount: -amount, type: "spend", source: "purchase", note },
+			tx,
+		);
+
+		return updated[0] || null;
+	});
 }
 
 
