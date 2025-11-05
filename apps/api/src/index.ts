@@ -1,47 +1,59 @@
 import express from "express";
 import helmet from "helmet";
-import { errorHandler } from "./middleware/errorHandler";
-import { requestLogger } from "./middleware/requestLogger";
-import { authenticate } from "./middleware/authenticate";
-import { Airline } from "@skyteam/database";
+import cors from "cors";
 
-import { adminRouter } from "./routes/admin";
-import { userRouter } from "./routes/users";
-import { flightRouter } from "./routes/flights";
-
-declare global {
-	namespace Express {
-		interface Request {
-			airline: Airline;
-		}
-	}
-}
+import { airlineAuth } from "./middleware/auth";
+import statusRouter from "./routes/status";
+import airlineRouter from "./routes/airline";
+import flightRouter from "./routes/flight";
+import usersRouter from "./routes/users";
 
 const app = express();
-const port = process.env.PORT || 4000;
 
-// Middleware
-app.use(helmet()); // Security headers
-app.use(express.json()); // Parse JSON bodies
-app.use(requestLogger); // Log requests
+// Security & basics
+app.use(helmet());
+app.use(cors());
+app.use(express.json());
 
-// Administrator Routes
-app.use("/admin", adminRouter);
-
-// Airline Routes
-app.use(authenticate); // Authenticate requests for Routes below
-app.use("/api/users", userRouter);
-app.use("/flights", flightRouter);
-
-// Health check endpoint
-app.get("/health", (req, res) => {
-	res.json({ status: "ok", timestamp: new Date().toISOString() });
+// Public health (no auth) to diagnose server without DB
+app.get("/health", (_req, res) => {
+	res.json({ ok: true });
 });
 
-// Error handling
-app.use(errorHandler);
+// Auth (all routes require a valid airline token via x-api-key)
+app.use(airlineAuth);
 
-// Start server
-app.listen(port, () => {
-	console.log(`API server running at http://localhost:${port}`);
+// Routes
+app.use(statusRouter);
+app.use(airlineRouter);
+app.use(flightRouter);
+app.use(usersRouter);
+
+// Health
+app.get("/", (_req, res) => {
+	res.json({ ok: true });
+});
+
+// Not found
+app.use((req, res) => {
+	res.status(404).json({ error: "Not Found", path: req.path });
+});
+
+// Error handler
+app.use(
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	(
+		err: any,
+		_req: express.Request,
+		res: express.Response,
+		_next: express.NextFunction,
+	) => {
+		console.error("Unhandled error:", err);
+		res.status(500).json({ error: "Internal Server Error" });
+	},
+);
+
+const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
+app.listen(PORT, () => {
+	console.log(`[api] listening on http://localhost:${PORT}`);
 });

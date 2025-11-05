@@ -14,7 +14,7 @@ type PostLike = {
 
 export function PostCard({ post }: { post: PostLike }) {
 	return (
-		<Link href={`/blog/${post.slug}`}>
+		<Link href={`/press-releases/${post.slug}`}>
 			<Card className="h-full hover:shadow-md hover:-translate-y-1 transition-all duration-200 overflow-hidden">
 				<div className="relative w-full h-40 overflow-hidden">
 					<Image
@@ -40,7 +40,18 @@ export function PostCard({ post }: { post: PostLike }) {
 					) : null}
 					<div className="flex items-center justify-between text-xs text-muted-foreground">
 						<time dateTime={post.date}>
-							{new Date(post.date).toLocaleDateString()}
+							{(() => {
+								const date = new Date(post.date);
+								const day = String(date.getDate()).padStart(
+									2,
+									"0",
+								);
+								const month = String(
+									date.getMonth() + 1,
+								).padStart(2, "0");
+								const year = date.getFullYear();
+								return `${day}/${month}/${year}`;
+							})()}
 						</time>
 						<div className="flex gap-1">
 							{post.tags

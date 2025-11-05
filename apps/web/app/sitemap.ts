@@ -6,11 +6,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
 	const routes: MetadataRoute.Sitemap = [
 		{ url: `${baseUrl}/`, lastModified: new Date() },
-		{ url: `${baseUrl}/blog`, lastModified: new Date() },
+		{ url: `${baseUrl}/press-releases`, lastModified: new Date() },
 		...allPosts
 			.filter((p: { published: boolean }) => p.published)
 			.map((p: { slug: string; date: string | number | Date }) => ({
-				url: `${baseUrl}/blog/${p.slug}`,
+				url: `${baseUrl}/press-releases/${p.slug}`,
 				lastModified: new Date(p.date),
 			})),
 	];

@@ -21,7 +21,7 @@ export const Post = defineDocumentType(() => ({
 		url: {
 			type: "string",
 			resolve: (doc) =>
-				`/blog/${doc._raw.flattenedPath.replace(/^posts\//, "")}`,
+				`/press-releases/${doc._raw.flattenedPath.replace(/^posts\//, "")}`,
 		},
 	},
 }));
