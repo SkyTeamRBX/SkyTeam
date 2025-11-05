@@ -77,10 +77,10 @@ export function Header() {
 							<NavigationMenuItem>
 								<NavigationMenuLink asChild>
 									<Link
-										href={"/blog" as any}
+										href={"/press-releases" as any}
 										className="h-9 px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
 									>
-										Blog
+										Press Releases
 									</Link>
 								</NavigationMenuLink>
 							</NavigationMenuItem>

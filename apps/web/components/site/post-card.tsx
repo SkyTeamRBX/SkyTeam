@@ -14,7 +14,7 @@ type PostLike = {
 
 export function PostCard({ post }: { post: PostLike }) {
 	return (
-		<Link href={`/blog/${post.slug}`}>
+		<Link href={`/press-releases/${post.slug}`}>
 			<Card className="h-full hover:shadow-md hover:-translate-y-1 transition-all duration-200 overflow-hidden">
 				<div className="relative w-full h-40 overflow-hidden">
 					<Image

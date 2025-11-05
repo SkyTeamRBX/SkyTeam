@@ -10,9 +10,9 @@ export async function GET() {
 			(p: any) => `
       <item>
         <title>${escapeXml(p.title)}</title>
-        <link>${baseUrl}/blog/${p.slug}</link>
+        <link>${baseUrl}/press-releases/${p.slug}</link>
         <pubDate>${new Date(p.date).toUTCString()}</pubDate>
-        <guid>${baseUrl}/blog/${p.slug}</guid>
+        <guid>${baseUrl}/press-releases/${p.slug}</guid>
         <description>${escapeXml(p.description || "")}</description>
       </item>
     `,
@@ -22,7 +22,7 @@ export async function GET() {
 	const xml = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
-      <title>SkyTeam Blog</title>
+      <title>SkyTeam Press Release</title>
       <link>${baseUrl}</link>
       <description>RSS Feed</description>
       ${items}

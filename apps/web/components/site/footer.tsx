@@ -50,10 +50,10 @@ export function Footer() {
 								</li>
 								<li>
 									<Link
-										href="/blog"
+										href="/press-releases"
 										className="hover:text-foreground transition-colors"
 									>
-										Blog
+										Press Release
 									</Link>
 								</li>
 							</ul>

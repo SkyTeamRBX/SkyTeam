@@ -38,7 +38,7 @@ export default function LandingPage() {
 							<div className="flex items-center gap-3">
 								<Button asChild>
 									<Link
-										href="/blog"
+										href="/press-releases"
 										className="flex items-center"
 									>
 										What's new
@@ -64,7 +64,7 @@ export default function LandingPage() {
 			<Container>
 				<section className="mt-16">
 					<Link
-						href="/blog"
+						href="/press-releases"
 						className="group flex items-center gap-2 mb-6"
 					>
 						<h2 className="text-3xl font-bold font-display">
