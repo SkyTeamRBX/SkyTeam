@@ -17,7 +17,7 @@ export default function BlogIndex() {
 		.sort((a: any, b: any) => +new Date(b.date) - +new Date(a.date));
 
 	return (
-		<div className="py-10 -mt-[72px] pt-[82px]">
+		<div className="py-10 -mt-[72px] pt-[100px]">
 			<Container>
 				<Breadcrumb className="mb-6">
 					<BreadcrumbList>
