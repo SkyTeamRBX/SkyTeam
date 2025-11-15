@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
-import { ScrollSnapManager } from "@/components/site/scroll-snap-manager";
 
 export const metadata: Metadata = {
 	title: "SkyTeam ROBLOX",
@@ -25,7 +24,6 @@ export default function RootLayout({
 			className="dark overflow-x-hidden"
 		>
 			<body className="min-h-dvh flex flex-col">
-				<ScrollSnapManager />
 				<Header />
 				<main className="flex-1 relative">{children}</main>
 				<Footer />
