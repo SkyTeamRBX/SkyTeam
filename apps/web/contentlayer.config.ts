@@ -12,6 +12,7 @@ export const Post = defineDocumentType(() => ({
 		tags: { type: "list", of: { type: "string" } },
 		cover: { type: "string" },
 		banner: { type: "string" },
+		location: { type: "string" },
 	},
 	computedFields: {
 		slug: {
