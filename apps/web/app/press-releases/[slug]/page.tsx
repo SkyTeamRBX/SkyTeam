@@ -135,8 +135,8 @@ export default async function PostPage({
 						<h1 className="not-prose text-4xl md:text-5xl font-extrabold uppercase">
 							{post.title}
 						</h1>
-						<p className="not-prose text-sm text-muted-foreground mt-2 mb-8">
-							<time dateTime={post.date}>
+						<p className="not-prose text-sm text-muted-foreground mt-2 mb-8 flex items-center">
+							<time dateTime={post.date} className="mr-2">
 								{(() => {
 									const date = new Date(post.date);
 									const day = String(date.getDate()).padStart(
@@ -150,6 +150,10 @@ export default async function PostPage({
 									return `${day}/${month}/${year}`;
 								})()}
 							</time>
+							-
+							{post.location && (
+								<span className="ml-2">{post.location}</span>
+							)}
 						</p>
 						<article className="prose prose-neutral dark:prose-invert max-w-none">
 							<Mdx code={post.body.code} />
